@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwgtrk8je4es6"]
+[gd_scene load_steps=14 format=3 uid="uid://bwgtrk8je4es6"]
 
 [ext_resource type="Texture2D" uid="uid://pucgh0qbmij" path="res://assets/Bg.png" id="1_nmwho"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="2_2vu7i"]
 [ext_resource type="FontFile" uid="uid://cwd1tkm36irny" path="res://assets/pixel_font.ttf" id="2_4g85s"]
 [ext_resource type="Script" path="res://scenes/Player.gd" id="3_fpv7k"]
+[ext_resource type="Texture2D" uid="uid://34o7hn5ifuww" path="res://campo.svg" id="3_h0uub"]
 [ext_resource type="Script" path="res://scenes/Ball.gd" id="4_18rf6"]
 [ext_resource type="Script" path="res://scenes/CPU.gd" id="4_btv15"]
+[ext_resource type="Texture2D" uid="uid://bkdmbfvxg6qgj" path="res://football-soccer-ball-pixel-8bit-icon-png.webp" id="6_y71be"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vks4v"]
 size = Vector2(20, 120)
@@ -24,10 +26,17 @@ size = Vector2(64, 648)
 
 [node name="Main" type="Sprite2D"]
 texture_filter = 1
+position = Vector2(16, -1)
 texture = ExtResource("1_nmwho")
 centered = false
 script = ExtResource("2_2vu7i")
 metadata/_edit_horizontal_guides_ = [-85.0]
+
+[node name="Campo" type="Sprite2D" parent="."]
+position = Vector2(578.301, 322)
+rotation = -1.5708
+scale = Vector2(1, 1.04523)
+texture = ExtResource("3_h0uub")
 
 [node name="Player" type="StaticBody2D" parent="."]
 position = Vector2(50, 324)
@@ -74,7 +83,13 @@ position = Vector2(576, 324)
 collision_mask = 3
 script = ExtResource("4_18rf6")
 
+[node name="Football-soccer-ball-pixel-8Bit-icon-png" type="Sprite2D" parent="Ball"]
+position = Vector2(-21, -23)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("6_y71be")
+
 [node name="ColorRect" type="ColorRect" parent="Ball"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,6 +104,7 @@ grow_vertical = 2
 color = Color(0.85098, 0, 0.160784, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2(-21, -23)
 shape = SubResource("RectangleShape2D_croqj")
 debug_color = Color(1, 1, 1, 1)
 
@@ -115,17 +131,17 @@ debug_color = Color(0, 0, 1, 1)
 [node name="ScoreRight" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight"]
-position = Vector2(1184, 324)
+position = Vector2(1168, 324)
 shape = SubResource("RectangleShape2D_4i124")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="CPUScore" type="Label" parent="Hud"]
-offset_left = 761.0
-offset_top = -119.0
-offset_right = 1132.0
-offset_bottom = 193.0
+offset_left = 787.0
+offset_top = -120.0
+offset_right = 1158.0
+offset_bottom = 192.0
 theme_override_fonts/font = ExtResource("2_4g85s")
 theme_override_font_sizes/font_size = 50
 text = "0"
